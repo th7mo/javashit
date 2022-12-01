@@ -1,6 +1,6 @@
 {
   "name": "javashit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A shitty testing framework",
   "main": "javashit.js",
   "scripts": {
