@@ -1,0 +1,12 @@
+{
+  "name": "javashit",
+  "version": "1.0.0",
+  "description": "A shitty testing framework",
+  "main": "javashit.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "th7mo",
+  "license": "ISC",
+  "type": "module"
+}
