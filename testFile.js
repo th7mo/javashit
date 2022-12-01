@@ -6,6 +6,7 @@ testSuite('allTheTests.js', () => {
         let value = 1;
 
         assert(value, 1);
+        assert(value, 2);
     });
 
     it('shouldNotWork', () => {

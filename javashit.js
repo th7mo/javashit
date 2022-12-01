@@ -13,11 +13,11 @@ function printTestResults() {
     let longestName = getLongestName();
     for (let [testName, successfulTest] of tests) {
         process.stdout.write(testNumber + ". '" + testName + "'" + ' '.repeat(longestName + 3 - testName.length));
-        if (successfulTest) {
+        if (successfulTest === true) {
             console.log("success");
         } else {
             failedTestsCount++;
-            console.log("failed");
+            console.log("failed => " + successfulTest);
         }
         testNumber++;
     }
@@ -37,18 +37,24 @@ function getLongestName() {
 
 export function it(testName, testFunction) {
     currentTest = testName;
-    testFunction();
+    try {
+        testFunction();
+        tests.set(currentTest, true);
+    } catch (e) {
+        tests.set(currentTest, e);
+    }
 }
 
 export function assert(actual, expected) {
     let isSuccessful = actual === expected;
-    tests.set(currentTest, isSuccessful);
-    return isSuccessful;
+    if (!isSuccessful) {
+        throw "AssertionError for '" + currentTest + "': " + actual + ' is not equal to ' + expected;
+    }
 }
 
 export function assertNot(actual, expected) {
     let isSuccessful = actual !== expected;
-    tests.set(currentTest, isSuccessful);
-    return isSuccessful;
+    if (!isSuccessful) {
+        throw "AssertionError for '" + currentTest + "': " + actual + ' is equal to ' + expected;
+    }
 }
-
